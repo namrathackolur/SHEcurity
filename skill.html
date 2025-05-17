@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Swap Platform</title>
+    <link rel="stylesheet" href="skill.css">
+</head>
+<body>
+    <header>
+        <h1>Skill Swap Platform</h1>
+        <nav>
+            <ul>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#forum">Forum</a></li>
+                <li><a href="#profile">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="profile">
+            <h2>Create a Profile</h2>
+            <form id="profile-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="skill">Skill:</label>
+                <input type="text" id="skill" name="skill" required>
+                <label for="contact">Contact:</label>
+                <input type="text" id="contact" name="contact" required>
+                <label for="photo">Upload Photo:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+                <button type="submit">Save Profile</button>
+                <p id="profile-message"></p>
+            </form>
+            <div id="profile-list"></div>
+        </section>
+        
+        <section id="schedule">
+            <h2>Schedule a Skill Swap</h2>
+            <form id="schedule-form">
+                <label for="schedule-name">Your Name:</label>
+                <input type="text" id="schedule-name" name="name" required>
+                <label for="schedule-skill">Skill You Offer:</label>
+                <input type="text" id="schedule-skill" name="skill" required>
+                <label for="schedule-skill-needed">Skill You Need:</label>
+                <input type="text" id="schedule-skill-needed" name="skill-needed" required>
+                <label for="schedule-date">Preferred Date:</label>
+                <input type="date" id="schedule-date" name="date" required>
+                <button type="submit">Save Schedule</button>
+                <p id="schedule-message"></p>
+            </form>
+            <div id="schedule-list"></div>
+        </section>
+        
+        <section id="forum">
+            <h2>Forum Discussions</h2>
+            <form id="forum-form">
+                <label for="forum-topic">Discussion Topic:</label>
+                <input type="text" id="forum-topic" name="topic" required>
+                <label for="forum-message">Message:</label>
+                <textarea id="forum-message" name="message" required></textarea>
+                <button type="submit">Post</button>
+                <p id="forum-message"></p>
+            </form>
+            <div id="forum-list"></div>
+        </section>
+
+        <section id="reviews">
+            <h2>Reviews and Ratings</h2>
+            <form id="review-form">
+                <label for="review-name">Your Name:</label>
+                <input type="text" id="review-name" name="name" required>
+                <label for="review-skill">Skill Swap Partner:</label>
+                <input type="text" id="review-skill" name="skill-partner" required>
+                <label for="review-rating">Rating:</label>
+                <select id="review-rating" name="rating" required>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+                <label for="review-message">Review:</label>
+                <textarea id="review-message" name="message" required></textarea>
+                <button type="submit">Submit Review</button>
+                <p id="review-message"></p>
+            </form>
+            <div id="review-list"></div>
+        </section>
+    </main>
+    <script src="skill.js"></script>
+</body>
+</html>

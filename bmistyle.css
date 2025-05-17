@@ -1,0 +1,63 @@
+/* Updated styles for BMI Calculator page */
+
+/* Form input and button styles */
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff00bf;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* BMI result display styles */
+  #bmiResult {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  /* BMI status color coding */
+  .bmi-healthy {
+    color: #28a745; /* Green for healthy weight */
+  }
+  
+  .bmi-overweight {
+    color: #ffc107; /* Yellow for overweight */
+  }
+  
+  .bmi-obese {
+    color: #dc3545; /* Red for obese */
+  }
+  
+  .container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+  }
+  

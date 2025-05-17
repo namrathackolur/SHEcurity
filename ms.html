@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Femisy - Period Tracker & Quizzes</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-image: url('perbg.jpg');
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        padding: 20px;
+        margin: 0;
+        backdrop-filter: blur(5px);
+    }
+    
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+    
+    .container > div {
+        background: rgba(0, 0, 0, 0.7); /* Slightly transparent black */
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        width: calc(50% - 20px);
+        margin-bottom: 20px;
+        backdrop-filter: blur(8px);
+    }
+    
+    h1, h2, h3 {
+        color: #f0f0f0;
+        font-weight: 600;
+    }
+    
+    h2 {
+        font-size: 1.8em;
+    }
+    
+    h3 {
+        font-size: 1.4em;
+    }
+    
+    .input-group {
+        margin-bottom: 15px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #f0f0f0;
+    }
+    
+    input[type="date"],
+    input[type="number"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+        margin-top: 5px;
+    }
+    
+    button {
+        padding: 12px 25px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 1em;
+    }
+    
+    button:hover {
+        background-color: #555;
+    }
+    
+    #result, #healthQuizResult, #moodQuizResult {
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+    
+    article {
+        text-align: left;
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff;
+    }
+    
+    ul {
+        list-style-type: none;
+    }
+    
+    li {
+        margin-bottom: 10px;
+    }
+    
+    .donate-section {
+        background: rgba(0, 0, 0, 0.8); /* Less black for donation section */
+        padding: 20px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 1200px;
+        margin-bottom: 20px;
+    }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div id="periodTracker">
+            <h2>Period Tracker</h2>
+            <form id="periodForm">
+                <div class="input-group">
+                    <label for="lastPeriod">Last Period Date:</label>
+                    <input type="date" id="lastPeriod" required>
+                </div>
+                <div class="input-group">
+                    <label for="cycleLength">Cycle Length (days):</label>
+                    <input type="number" id="cycleLength" required>
+                </div>
+                <div class="input-group">
+                    <label for="notifyMe">Notify me before next period:</label>
+                    <input type="checkbox" id="notifyMe">
+                </div>
+                <button type="submit">Calculate Next Period</button>
+            </form>
+            <div id="result"></div>
+        </div>
+
+        <div id="experienceSharing">
+            <h2>Share Your First Period Experience</h2>
+            <br><br>
+            <form id="experienceForm">
+                <div class="input-group">
+                    <textarea id="story" rows="4" cols="50" required></textarea>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+            <ul id="experiencesList"></ul>
+        </div>
+
+        <div id="healthQuizContainer">
+            <h2>Health Quiz</h2>
+            <br>
+            <br>
+            <form id="healthQuizForm">
+                <div class="input-group">
+                    <p>1. How old were you when you got your first period?</p>
+                    <br>
+                    <input type="radio" name="q1" value="Under 12"> Under 12<br>
+                    <input type="radio" name="q1" value="12-14"> 12-14<br>
+                    <input type="radio" name="q1" value="Over 14"> Over 14<br>
+                </div>
+                <div class="input-group">
+                    <p>2. How often do you experience irregular periods?</p>
+                    <br>
+                    <input type="radio" name="q2" value="Rarely"> Rarely<br>
+                    <input type="radio" name="q2" value="Sometimes"> Sometimes<br>
+                    <input type="radio" name="q2" value="Frequently"> Frequently<br>
+                </div>
+                <div class="input-group">
+                    <p>3. Have you ever been diagnosed with any menstrual disorders (e.g., PCOS)?</p>
+                    <br>
+                    <input type="radio" name="q3" value="Yes"> Yes<br>
+                    <input type="radio" name="q3" value="No"> No<br>
+                </div>
+                <div class="input-group">
+                    <p>4. How do you manage period pain?</p>
+                    <br>
+                    <input type="checkbox" name="q4" value="Painkillers"> Painkillers<br>
+                    <input type="checkbox" name="q4" value="Heat Therapy"> Heat Therapy<br>
+                    <input type="checkbox" name="q4" value="Exercise"> Exercise<br>
+                    <input type="checkbox" name="q4" value="Diet Changes"> Diet Changes<br>
+                </div>
+                <div class="input-group">
+                    <p>5. Do you track your menstrual cycle regularly?</p>
+                    <br>
+                    <input type="radio" name="q5" value="Yes"> Yes<br>
+                    <input type="radio" name="q5" value="No"> No<br>
+                </div>
+                <br>
+                <button type="button" onclick="submitHealthQuiz()">Submit</button>
+            </form>
+            <div id="healthQuizResult"></div>
+        </div>
+
+        <div id="moodQuizContainer">
+            <h2>Mood Quiz</h2>
+            <br><br>
+            <form id="moodQuizForm">
+                <div class="input-group">
+                    <p>1. Do you often feel low during your period?</p>
+                    <br>
+                    <input type="radio" name="q1" value="Yes"> Yes<br>
+                    <input type="radio" name="q1" value="No"> No<br>
+                </div>
+                <div class="input-group">
+                    <p>2. How frequently do you experience mood swings?</p>
+                    <br>
+                    <input type="radio" name="q2" value="Rarely"> Rarely<br>
+                    <input type="radio" name="q2" value="Occasionally"> Occasionally<br>
+                    <input type="radio" name="q2" value="Often"> Often<br>
+                </div>
+                <div class="input-group">
+                    <p>3. What activities help you improve your mood?</p>
+                    <br>
+                    <input type="checkbox" name="q3" value="Exercise"> Exercise<br>
+                    <input type="checkbox" name="q3" value="Reading"> Reading<br>
+                    <input type="checkbox" name="q3" value="Listening to Music"> Listening to Music<br>
+                    <input type="checkbox" name="q3" value="Socializing"> Socializing<br>
+                    <input type="checkbox" name="q3" value="Meditation"> Meditation<br>
+                </div>
+                <div class="input-group">
+                    <p>4. Do you find it helpful to talk about your mood with someone?</p>
+                    <br>
+                    <input type="radio" name="q4" value="Yes"> Yes<br>
+                    <input type="radio" name="q4" value="No"> No<br>
+                </div>
+                <br>
+                <br>
+                <br>
+                <button type="button" onclick="submitMoodQuiz()">Submit</button>
+            </form>
+            <div id="moodQuizResult"></div>
+        </div>
+    </div>
+
+    <div class="donate-section">
+        <h3>Donate Free Pads</h3>
+        <p>Help us provide free pads to those in need.</p>
+        <br><br>
+            <form id="donateForm">
+                <div class="input-group">
+                    <label for="donorName">Your Name:</label>
+                    <input type="text" id="donorName" required>
+                </div>
+                <div class="input-group">
+                    <label for="donorEmail">Your Email:</label>
+                    <input type="email" id="donorEmail" required>
+                </div>
+                <div class="input-group">
+                    <label for="donorLocation">Location:</label>
+                    <input type="text" id="donorLocation" required>
+                </div>
+                <button type="submit">Submit Donation</button>
+            </form>
+        <div id="donateResult"></div>
+        <!-- Donation details go here -->
+    </div>
+
+    <script>
+        document.getElementById("periodForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const lastPeriod = document.getElementById("lastPeriod").value;
+    const cycleLength = document.getElementById("cycleLength").value;
+    const notifyMe = document.getElementById("notifyMe").checked;
+
+    const nextPeriod = calculateNextPeriod(new Date(lastPeriod), parseInt(cycleLength));
+    document.getElementById("result").innerText = `Your next period is expected on: ${nextPeriod.toDateString()}`;
+
+    if (notifyMe) {
+        const notificationDate = new Date(nextPeriod);
+        notificationDate.setDate(notificationDate.getDate() - 3);
+        scheduleNotification(notificationDate);
+    }
+});
+
+function calculateNextPeriod(lastPeriodDate, cycleLength) {
+    const nextPeriodDate = new Date(lastPeriodDate);
+    nextPeriodDate.setDate(nextPeriodDate.getDate() + cycleLength);
+    return nextPeriodDate;
+}
+
+function scheduleNotification(notificationDate) {
+    const now = new Date();
+    const timeUntilNotification = notificationDate - now;
+
+    if (timeUntilNotification > 0) {
+        setTimeout(() => {
+            alert("Your next period is expected in 3 days!");
+        }, timeUntilNotification);
+    }
+}
+
+document.getElementById("experienceForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const story = document.getElementById("story").value;
+    const newExperience = document.createElement("li");
+    newExperience.innerText = story;
+    document.getElementById("experiencesList").appendChild(newExperience);
+    document.getElementById("experienceForm").reset();
+});
+
+function submitHealthQuiz() {
+    const healthQuizForm = document.getElementById("healthQuizForm");
+    const formData = new FormData(healthQuizForm);
+    let suggestions = 'Based on your answers, here are some health suggestions:\n';
+
+    const q1 = formData.get('q1');
+    const q2 = formData.get('q2');
+    const q3 = formData.get('q3');
+    const q4 = formData.getAll('q4');
+    const q5 = formData.get('q5');
+
+    if (q1 === 'Under 12') {
+        suggestions += '- Starting early is common, but if concerns arise, consult a healthcare provider.\n';
+    } else if (q1 === 'Over 14') {
+        suggestions += '- A later onset is not necessarily concerning, but monitor your health.\n';
+    }
+
+    if (q2 === 'Frequently') {
+        suggestions += '- Regularly experiencing irregular periods may warrant a visit to a healthcare provider.\n';
+    }
+
+    if (q3 === 'Yes') {
+        suggestions += '- Diagnosed menstrual disorders require management. Consult a healthcare provider for guidance.\n';
+    }
+
+    if (q4.includes('Painkillers')) {
+        suggestions += '- Painkillers can be effective, but ensure you follow dosage instructions.\n';
+    }
+    if (q4.includes('Heat Therapy')) {
+        suggestions += '- Heat therapy, like using a heating pad, can help alleviate cramps.\n';
+    }
+    if (q4.includes('Exercise')) {
+        suggestions += '- Regular exercise can help reduce period pain and improve mood.\n';
+    }
+    if (q4.includes('Diet Changes')) {
+        suggestions += '- Maintaining a balanced diet can help manage symptoms.\n';
+    }
+
+    if (q5 === 'No') {
+        suggestions += '- Tracking your cycle can help you understand your body better and anticipate your periods.\n';
+    }
+
+    document.getElementById('healthQuizResult').innerText = suggestions;
+}
+
+function submitMoodQuiz() {
+    const moodQuizForm = document.getElementById("moodQuizForm");
+    const formData = new FormData(moodQuizForm);
+    let suggestions = 'Based on your answers, here are some mood enhancement tips:\n';
+
+    const q1 = formData.get('q1');
+    const q2 = formData.get('q2');
+    const q3 = formData.getAll('q3');
+    const q4 = formData.get('q4');
+
+    if (q1 === 'Yes') {
+        suggestions += '- Feeling low during periods is common. Try practicing relaxation techniques such as yoga or meditation.\n';
+    }
+
+    if (q2 === 'Often') {
+        suggestions += '- Frequent mood swings might be managed with a consistent routine and healthy diet.\n';
+    }
+
+    if (q3.includes('Exercise')) {
+        suggestions += '- Regular physical activity can boost your mood and energy levels.\n';
+    }
+    if (q3.includes('Reading')) {
+        suggestions += '- Reading can be a great way to relax and distract yourself.\n';
+    }
+    if (q3.includes('Listening to Music')) {
+        suggestions += '- Listening to your favorite music can help lift your spirits.\n';
+    }
+    if (q3.includes('Socializing')) {
+        suggestions += '- Socializing with friends and family can help lift your mood.\n';
+    }
+    if (q3.includes('Meditation')) {
+        suggestions += '- Meditation can help you relax and reduce stress.\n';
+    }
+
+    if (q4 === 'Yes') {
+        suggestions += '- Talking about your mood with someone you trust can be very helpful.\n';
+    } else {
+        suggestions += '- If you prefer not to talk, consider writing about your feelings in a journal.\n';
+    }
+
+    document.getElementById('moodQuizResult').innerText = suggestions;
+}
+
+document.getElementById('donateForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const donorName = document.getElementById('donorName').value;
+    const donorEmail = document.getElementById('donorEmail').value;
+    const donorLocation = document.getElementById('donorLocation').value;
+
+    alert(`Thank you for your donation, ${donorName} from ${donorLocation}! We will contact you at ${donorEmail}.`);
+});
+
+    </script>
+</body>
+</html>

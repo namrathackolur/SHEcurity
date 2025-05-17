@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Femisy</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            position: relative;
+            width: 100%;
+            height: 105vh;
+            background: url('bg.jpg') no-repeat center center/cover;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        .header-content {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 85px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+        }
+        .logo {
+            width: 150px;
+            height: auto;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+            position: center;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: white;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        nav ul li a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        nav ul li .dropdown {
+            display: none;
+            position: absolute;
+            background: white;
+            top: 30px;
+            left: 0;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+        nav ul li:hover .dropdown {
+            display: block;
+        }
+        nav ul li .dropdown li {
+            width: 150px;
+            padding: 10px;
+        }
+        nav ul li .dropdown li a {
+            color: black;
+            font-weight: normal;
+        }
+        .title-section {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: fadeIn 2s ease-in-out;
+            z-index: 2;
+        }
+        .title {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+        }
+        .subtitle {
+            font-size: 1.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .welcome {
+            margin-top: 20px;
+            font-size: 2em;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+        }
+        .login-register {
+            margin-top: 30px;
+        }
+        .login-register a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .login-register a:hover {
+            background: rgba(70, 27, 111, 0.6);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                height: auto;
+            }
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+<script>
+    window.embeddedChatbotConfig = {
+    chatbotId: "9zVKnWxa4cm1ysisCLhGI",
+    domain: "www.chatbase.co"
+    }
+    </script>
+    <script
+    src="https://www.chatbase.co/embed.min.js"
+    chatbotId="9zVKnWxa4cm1ysisCLhGI"
+    domain="www.chatbase.co"
+    defer>
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <img src="mainlogo.jpg" alt="Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="fitness.html">Health & Wellness</a>
+                    </li>
+                    <li><a href="empower.html">Safety & Security</a></li>
+                    
+                    
+                    <li><a href="skill.html">Skill House</a></li>
+                    <li><a href="index.html">Emergency</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="title-section">
+            <h1 class="title">Welcome to Femisy</h1>
+            <p class="subtitle">Empower. Breath. Reconnect.</p>
+            <div class="login-register">
+                <a href="login.html">Login</a>
+                <a href="signup.html">Register</a>
+            </div>
+        
+            
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Female Security Website - Safety Tips</title>
+    <link rel="stylesheet" href="w2styles.css" />
+    <!-- Link to custom CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5; /* Light gray background */
+        }
+
+        header {
+            background-color: #003366; /* Dark blue background for header */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 40px;
+            font-weight: bold;
+            color: #ffffff; /* White color for the heading */
+            margin: 0;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .tip-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 15px;
+            padding: 20px;
+            background-color: #ffffff; /* White background for cards */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            border-left: 5px solid #003366; /* Dark blue left border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .tip-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #003366; /* Dark blue for the title */
+            margin-bottom: 10px;
+        }
+
+        .tip-category {
+            font-size: 18px;
+            color: #666; /* Gray color for the category */
+            margin-bottom: 10px;
+        }
+
+        .tip-description {
+            font-size: 16px;
+            color: #333; /* Dark gray for the description */
+        }
+
+        @media (max-width: 768px) {
+            .tip-card {
+                width: 90%;
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SAFETY TIPS</h1>
+    </header>
+
+    <main>
+        <div id="tips-container"><!-- Placeholder for safety tips --></div>
+    </main>
+
+    <script>
+        const proxyUrl = "https://api.allorigins.win/raw?url=";
+        const apiUrl = "https://female-safety-api.onrender.com/tips";
+
+        // Fetch safety tips using the AllOrigins proxy
+        fetch(proxyUrl + encodeURIComponent(apiUrl))
+            .then((response) => response.json())
+            .then((data) => {
+                const tipsContainer = document.getElementById("tips-container");
+                data.forEach((tip) => {
+                    const tipCard = document.createElement("div");
+                    tipCard.classList.add("tip-card");
+
+                    const title = document.createElement("div");
+                    title.classList.add("tip-title");
+                    title.textContent = tip.title;
+
+                    const category = document.createElement("div");
+                    category.classList.add("tip-category");
+                    category.textContent = `Category: ${tip.category}`;
+
+                    const description = document.createElement("div");
+                    description.classList.add("tip-description");
+                    description.textContent = `Description: ${tip.description}`;
+
+                    tipCard.appendChild(title);
+                    tipCard.appendChild(category);
+                    tipCard.appendChild(description);
+
+                    tipsContainer.appendChild(tipCard);
+                });
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    </script>
+</body>
+</html>
