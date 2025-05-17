@@ -1,2 +1,2 @@
 # SHEcurity
-A Comprehensive Platform for Empowerment, Wellness &amp; Safety
+A Comprehensive Platform for Women Empowerment, Wellness &amp; Safety
